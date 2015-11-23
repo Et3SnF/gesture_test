@@ -10,13 +10,9 @@
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/colorPrimary"/>
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:textSize="26sp"
-        android:textColor="@android:color/black"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:id="@+id/iv_test_image"/>
 
 </RelativeLayout>
