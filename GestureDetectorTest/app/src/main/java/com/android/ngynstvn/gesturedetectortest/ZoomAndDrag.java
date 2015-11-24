@@ -44,6 +44,13 @@ public class ZoomAndDrag extends View {
     private float previousTranslateX = 0.00F;
     private float previousTranslateY = 0.00F;
 
+    // This boolean ensures we are not going to call methods
+    // on events where we don't need them to be called.
+    private boolean dragged = true;
+
+    private int displayWidth = getContext().getResources().getDisplayMetrics().widthPixels;
+    private int displayHeight = getContext().getResources().getDisplayMetrics().heightPixels;
+
     public ZoomAndDrag(Context context) {
         super(context);
         scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleListener());
@@ -72,6 +79,15 @@ public class ZoomAndDrag extends View {
                 // and initial positions
                 translateXAmt = event.getX() - startX;
                 translateYAmt = event.getY() - startY;
+
+                // Pythagorean Theorem for purposes if we are dragging or not.
+                double distance = Math.sqrt(Math.pow(event.getX() - (startX + previousTranslateX), 2)
+                        + Math.pow(event.getY() - (startY + previousTranslateY), 2));
+
+                if(distance > 0) {
+                    dragged = true;
+                }
+
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
                 // When second finger is also on the screen
@@ -83,6 +99,7 @@ public class ZoomAndDrag extends View {
                 // When all fingers off the screen
                 // Because there are no fingers on the screen, there should be no mode
                 currentMode = NONE;
+                dragged = false;
 
                 // Whenever our fingers are off the screen, make sure to save the coordinates
                 // of the position we are currently at
@@ -127,11 +144,22 @@ public class ZoomAndDrag extends View {
         canvas.save();
         canvas.scale(scaleFactor, scaleFactor);
 
-        /**
-         *
-         * Canvas Drawing Here
-         *
-         */
+        // Stop the infinite dragging on all corners
+
+        // If the translation amount * -1 is less than 0 (trying to go past left bounds, set it to 0)
+        if((translateXAmt * -1) < 0) {
+            translateXAmt = 0;
+        }
+        else if((translateYAmt * -1) > (scaleFactor - 1) * displayWidth) {
+            translateXAmt = (1 - scaleFactor) * displayWidth;
+        }
+
+        if(translateYAmt * -1 < 0) {
+            translateYAmt = 0;
+        }
+        else if((translateYAmt * -1) > (scaleFactor -1) * displayHeight) {
+            translateYAmt = (1 - scaleFactor) * displayHeight;
+        }
 
         // Because the image is being scaled via zoom, the dragging scaling has to be impacted as well
         // Divide by the scaleFactor
