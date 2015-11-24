@@ -2,15 +2,16 @@ package com.android.ngynstvn.gesturedetectortest;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.View;
+import android.widget.ImageView;
 
 /**
  * Created by Ngynstvn on 11/23/15.
  */
-public class ZoomAndDrag extends View {
+public class ZoomAndDrag extends ImageView {
 
     private static final String CLASS_TAG = classTag(MainActivity.class);
 
@@ -54,6 +55,10 @@ public class ZoomAndDrag extends View {
     public ZoomAndDrag(Context context) {
         super(context);
         scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleListener());
+    }
+
+    public ZoomAndDrag(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
 
     @Override

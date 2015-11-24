@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         logMethod(CLASS_TAG);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testImage = (ImageView) findViewById(R.id.iv_find_waldo);
+        testImage = (ZoomAndDrag) findViewById(R.id.iv_find_waldo);
         testImage.setScaleType(ImageView.ScaleType.MATRIX);
         Picasso.with(getApplicationContext()).load(R.drawable.find_waldo).into(testImage);
     }
