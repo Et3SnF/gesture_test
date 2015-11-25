@@ -1,22 +1,30 @@
 package com.android.ngynstvn.gesturedetectortest;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String CLASS_TAG = classTag(MainActivity.class);
 
-    private TouchView testImage;
+    private FrameLayout frameLayout;
+    private ImageView testImage;
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         logMethod(CLASS_TAG);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testImage = (TouchView) findViewById(R.id.tchv_find_waldo);
-        testImage.setBackground(getDrawable(R.drawable.find_waldo));
+        frameLayout = (FrameLayout) findViewById(R.id.fl_test_frame);
+        testImage = (ImageView) findViewById(R.id.iv_find_waldo);
+        testImage.setScaleType(ImageView.ScaleType.MATRIX);
+        frameLayout.setOnTouchListener(new PanAndZoomListener(frameLayout, testImage, PanAndZoomListener.Anchor.TOPLEFT));
     }
 
     // Logging methods
