@@ -3,24 +3,20 @@ package com.android.ngynstvn.gesturedetectortest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String CLASS_TAG = classTag(MainActivity.class);
 
-    private ImageView testImage;
+    private TouchView testImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         logMethod(CLASS_TAG);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testImage = (ZoomAndDrag) findViewById(R.id.iv_find_waldo);
-        testImage.setScaleType(ImageView.ScaleType.MATRIX);
-        Picasso.with(getApplicationContext()).load(R.drawable.find_waldo).into(testImage);
+        testImage = (TouchView) findViewById(R.id.tchv_find_waldo);
+        testImage.setBackground(getDrawable(R.drawable.find_waldo));
     }
 
     // Logging methods

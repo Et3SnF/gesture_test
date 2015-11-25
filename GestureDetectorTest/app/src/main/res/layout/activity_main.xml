@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <com.android.ngynstvn.gesturedetectortest.ZoomAndDrag
-        android:id="@+id/iv_find_waldo"
+    <com.android.ngynstvn.gesturedetectortest.TouchView
+        android:id="@+id/tchv_find_waldo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/find_waldo"/>
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>
