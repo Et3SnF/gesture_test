@@ -8,6 +8,8 @@ import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String CLASS_TAG = classTag(MainActivity.class);
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         frameLayout = (FrameLayout) findViewById(R.id.fl_test_frame);
         testImage = (ImageView) findViewById(R.id.iv_find_waldo);
         testImage.setScaleType(ImageView.ScaleType.MATRIX);
+        Picasso.with(getApplicationContext()).load(R.drawable.find_waldo).into(testImage);
         frameLayout.setOnTouchListener(new PanAndZoomListener(frameLayout, testImage, PanAndZoomListener.Anchor.TOPLEFT));
     }
 

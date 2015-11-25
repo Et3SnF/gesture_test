@@ -111,7 +111,7 @@ public class PanAndZoomListener implements OnTouchListener {
         PanZoomCalculator(View container, View child, int anchor) {
             // Initialize class fields
             currentPan = new PointF(0, 0);
-            currentZoom = 1f;;
+            currentZoom = 1f;
             this.window = container;
             this.child = child;
             matrix = new Matrix();
